@@ -1,7 +1,8 @@
-export async function getProfileById(id) {
-  const response = await fetch(
-    `https://supademo.ernestofreyre.com/api/profiles/${id}`
-  );
-  const data = await response.json();
-  return data;
+export async function getProfileById(supabase, id) {
+  const { data: company } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("id", id)
+    .single();
+  return company;
 }

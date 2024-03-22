@@ -1,5 +1,4 @@
-export async function getProfiles () {
-    const response = await fetch("https://supademo.ernestofreyre.com/api/profiles");
-    const data = await response.json();
-    return data;
+export async function getProfiles(supabase) {
+  const { data: companies } = await supabase.from("profiles").select("*");
+  return companies;
 }
